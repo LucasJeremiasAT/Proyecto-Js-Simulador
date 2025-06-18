@@ -109,13 +109,13 @@ while(siguenPeleando()) {
     console.log(ataqueCpu);
 
     if(ataqueJugador.poder === ataqueCpu.poder) {
-        console.log("ambos tienen la misma fuerza y no se hacen daño");
+        console.log("Ambos tienen la misma fuerza y no se hacen daño");
     }
     else if(ataqueJugador.poder > ataqueCpu.poder) {
-        console.log("el " + jugador + " tiene un ataque mas fuerte que el " + cpu);
+        console.log("El " + jugador + " tiene un ataque mas fuerte que el " + cpu);
         vidaCpu = vidaCpu - ataqueJugador.poder;
     }else{
-        console.log("el " + cpu + " tiene un ataque mas fuerte que el " + jugador);
+        console.log("El " + cpu + " tiene un ataque mas fuerte que el " + jugador);
         vidaJugador = vidaJugador - ataqueCpu.poder;
     }
     
