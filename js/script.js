@@ -1,7 +1,5 @@
 console.log ("One Must Fall")
 
-const MIN_POWER = 10;
-const MAX_POWER = 30;
 //--- Selección de Personajes ---
 const personajes = [
     "Guerrero",
@@ -29,8 +27,6 @@ const jugador = personajes[eleccion];
 const personajesCpu = personajes.slice();
 personajesCpu.splice(eleccion, 1);
 const cpu = personajesCpu[Math.floor(Math.random() * personajesCpu.length)];
-
-
 
 console.log(personajes);
 console.log(personajesCpu);
@@ -86,7 +82,7 @@ const habilidades = {
         { nombre: "Juicio Divino", poder:30 }
     ]
 }
-
+// --- Funciones ---
 function ataque(personaje){
     const ataques = habilidades[personaje];
     return ataques[Math.floor(Math.random() * ataques.length)]
@@ -103,7 +99,7 @@ function JugadorSigueVivo() {
 function CalcularRound() {
     return round = round + 1;
 }
-
+// --- Estructura del combate ---
 while(siguenPeleando()) {
     CalcularRound()
 
@@ -122,8 +118,8 @@ while(siguenPeleando()) {
         console.log("el " + cpu + " tiene un ataque mas fuerte que el " + jugador);
         vidaJugador = vidaJugador - ataqueCpu.poder;
     }
-    console.log("HP viejo " + jugador + ": " + vidaJugador);
-    console.log("HP viejo " + cpu + ": " + vidaCpu);
+    
+    // --- Muestra por consola la vida de los jugadores ---
     if(vidaJugador > 0) {
         console.log("HP " + jugador + ": " + vidaJugador);
     }else {
@@ -134,9 +130,10 @@ while(siguenPeleando()) {
     }else {
         console.log("HP " + cpu + ": 0");
     }
+    // --- Muestra por consola la ronda que estan peleando ---
     console.log("Round " + round);
 }
-
+// --- Muestra por consola el ganador del combate ---
 if (JugadorSigueVivo()){
     console.log(jugador + " gana la pelea")
 }else {

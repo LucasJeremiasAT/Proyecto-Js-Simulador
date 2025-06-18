@@ -5,6 +5,7 @@ Las batallas se resuelven mediante ataques aleatorios divididos en rounds hasta 
 
 ## Características
 - Simula combates 1 contra 1
-- Ataques con daño aleatorio
+- Cada personaje posee 3 habilidades
+- Ataques elegidos aleatoriamente por round
 - Registro de HP por ronda
 - Determinación automática del ganador
