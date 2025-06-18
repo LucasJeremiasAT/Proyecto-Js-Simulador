@@ -109,7 +109,7 @@ while(siguenPeleando()) {
     console.log(ataqueCpu);
 
     if(ataqueJugador.poder === ataqueCpu.poder) {
-        console.log("ambos tienen la misma fuerza");
+        console.log("ambos tienen la misma fuerza y no se hacen daño");
     }
     else if(ataqueJugador.poder > ataqueCpu.poder) {
         console.log("el " + jugador + " tiene un ataque mas fuerte que el " + cpu);
@@ -135,7 +135,7 @@ while(siguenPeleando()) {
 }
 // --- Muestra por consola el ganador del combate ---
 if (JugadorSigueVivo()){
-    console.log(jugador + " gana la pelea")
+    console.log("El " + jugador + " gana la pelea")
 }else {
-    console.log(cpu + " gana la pelea");
+    console.log("El " + cpu + " gana la pelea");
 }
