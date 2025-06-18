@@ -104,7 +104,7 @@ function CalcularRound() {
     return round = round + 1;
 }
 
-while(vidaJugador > 0 && vidaCpu > 0) {
+while(siguenPeleando()) {
     round++;
 
     let ataqueJugador = ataque(jugador);
