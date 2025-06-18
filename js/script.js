@@ -105,7 +105,7 @@ function CalcularRound() {
 }
 
 while(siguenPeleando()) {
-    round++;
+    CalcularRound()
 
     let ataqueJugador = ataque(jugador);
     let ataqueCpu = ataque(cpu);
