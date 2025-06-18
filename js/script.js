@@ -122,8 +122,18 @@ while(siguenPeleando()) {
         console.log("el " + cpu + " tiene un ataque mas fuerte que el " + jugador);
         vidaJugador = vidaJugador - ataqueCpu.poder;
     }
-    console.log("HP " + jugador + ": " + vidaJugador);
-    console.log("HP " + cpu + ": " + vidaCpu);
+    console.log("HP viejo " + jugador + ": " + vidaJugador);
+    console.log("HP viejo " + cpu + ": " + vidaCpu);
+    if(vidaJugador > 0) {
+        console.log("HP " + jugador + ": " + vidaJugador);
+    }else {
+        console.log("HP " + jugador + ": 0");
+    }
+    if(vidaCpu > 0){
+        console.log("HP " + cpu + ": " + vidaCpu);
+    }else {
+        console.log("HP " + cpu + ": 0");
+    }
     console.log("Round " + round);
 }
 
