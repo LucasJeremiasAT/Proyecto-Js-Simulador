@@ -1,5 +1,3 @@
-console.log ("One Must Fall")
-
 //--- Selección de Personajes ---
 const personajes = [
     "Guerrero",
@@ -78,9 +76,6 @@ let vidaCpu = 100;
 
 let round = 0;
 
-console.log("Tu personaje es: " + jugador);
-console.log("CPU es: " + cpu);
-
 //--- Funciones de combate ---
 
 function ataque(personaje){
@@ -101,44 +96,53 @@ function CalcularRound() {
 }
 
 // --- Estructura del combate ---
+
+let pelea = document.getElementById("pelea");
+
+pelea.innerHTML = `<h2>${jugador} vs ${cpu}</h2>`;
+
+let PeleaEnTiempoReal = "";
+
 while(siguenPeleando()) {
     CalcularRound()
 
     let ataqueJugador = ataque(jugador);
     let ataqueCpu = ataque(cpu);
-    console.log(ataqueJugador);
-    console.log(ataqueCpu);
+    let mensaje = `<p><strong>Round ${round}</strong></p>`;
+
+    // --- Muestra los ataques usados por ambos personajes ---
+
+    mensaje += `<p>El ${jugador} usa <strong>${ataqueJugador.nombre}</strong> (${ataqueJugador.poder} de poder)</p>`;
+    mensaje += `<p>El ${cpu} usa <strong>${ataqueCpu.nombre}</strong> (${ataqueCpu.poder} de poder)</p>`;
 
     if(ataqueJugador.poder === ataqueCpu.poder) {
-        console.log("Empate, no se hacen daño");
+        mensaje += `<p>Empate, no se hacen daño.</p>`;
     }
     else if(ataqueJugador.poder > ataqueCpu.poder) {
-        console.log("El " + jugador + " tiene un ataque mas fuerte que el " + cpu);
+        mensaje += `<p>El ${jugador} gana el intercambio de poderes y le hace ${ataqueJugador.poder} puntos de daño.</p>`;
         vidaCpu = vidaCpu - ataqueJugador.poder;
     }else{
-        console.log("El " + cpu + " tiene un ataque mas fuerte que el " + jugador);
+        mensaje += `<p>El ${cpu} gana el intercambio de poderes y le hace ${ataqueCpu.poder} puntos de daño.</p>`;
         vidaJugador = vidaJugador - ataqueCpu.poder;
     }
     
-    // --- Muestra por consola la vida de los jugadores ---
-    if(vidaJugador > 0) {
-        console.log("HP " + jugador + ": " + vidaJugador);
-    }else {
-        console.log("HP " + jugador + ": 0");
-    }
-    if(vidaCpu > 0){
-        console.log("HP " + cpu + ": " + vidaCpu);
-    }else {
-        console.log("HP " + cpu + ": 0");
-    }
-    // --- Muestra por consola la ronda que estan peleando ---
-    console.log("Round " + round);
+    // --- Muestra la vida de los jugadores ---
+
+    mensaje += `<p>HP ${jugador}: ${Math.max(vidaJugador, 0)}</p>`;
+    mensaje += `<p>HP ${cpu}: ${Math.max(vidaCpu, 0)}</p>`;
+    mensaje += `<hr>`;
+
+    PeleaEnTiempoReal += mensaje;
 }
-// --- Muestra por consola el ganador del combate ---
+
+// --- Pelea completa después del bucle ---
+pelea.innerHTML += PeleaEnTiempoReal;
+
+// --- Muestra resultado final ---
 if (JugadorSigueVivo()){
-    console.log("El " + jugador + " gana la pelea")
-}else {
-    console.log("El " + cpu + " gana la pelea");
+    pelea.innerHTML += `<h3>El ${jugador} gana la pelea</h3>`;
+} else {
+    pelea.innerHTML += `<h3>El ${cpu} gana la pelea</h3>`;
 }
 }
 

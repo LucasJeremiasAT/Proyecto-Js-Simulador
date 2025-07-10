@@ -1,4 +1,27 @@
 body {
+    margin: 0;
+    font-family: sans-serif;
     background-color: #393E46;
     color: #EEEEEE;
+}
+
+h1 {
+    text-align: center;
+    font-weight: 500;
+}
+
+.contenedor-pelea {
+    display: block;
+    background-color: #EEEEEE;
+    color: #222831;
+    text-align: center;
+    width: 40%;
+    height: auto;
+    margin: 50px auto;
+    border: #222831 solid 2px;
+}
+
+.contenedor-pelea h1, h2, h3{
+    color: #D65A31;
+    font-weight: 800;
 }
