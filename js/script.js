@@ -179,7 +179,7 @@ historial.forEach(pelea => {
 }
 
 
-//--- Eventos para los botones ---
+// --- Eventos para los botones ---
 
 document.getElementById("btn-guerrero").addEventListener("click", () => seleccionarPersonaje("Guerrero"));
 document.getElementById("btn-mago").addEventListener("click", () => seleccionarPersonaje("Mago"));
@@ -191,3 +191,16 @@ document.getElementById("btn-monje").addEventListener("click", () => seleccionar
 document.getElementById("btn-sacerdote").addEventListener("click", () => seleccionarPersonaje("Sacerdote"));
 document.getElementById("btn-cazador").addEventListener("click", () => seleccionarPersonaje("Cazador"));
 document.getElementById("btn-barbaro").addEventListener("click", () => seleccionarPersonaje("Bárbaro"));
+
+// --- Boton para reiniciar la pelea ---
+
+document.getElementById("btn-reiniciar").addEventListener("click", () => {
+    location.reload();
+});
+
+// --- Boton para borrar el historial ---
+
+document.getElementById("btn-borrar").addEventListener("click", () => {
+    localStorage.removeItem("historial");
+    mostrarHistorial();
+});
