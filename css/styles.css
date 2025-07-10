@@ -1,13 +1,15 @@
 body {
     margin: 0;
+    box-sizing: border-box;
     font-family: sans-serif;
     background-color: #393E46;
     color: #EEEEEE;
 }
 
 h1 {
+    margin-top: 20px;
     text-align: center;
-    font-weight: 500;
+    font-weight: 800;
 }
 
 .contenedor-pelea {
@@ -24,4 +26,20 @@ h1 {
 .contenedor-pelea h1, h2, h3{
     color: #D65A31;
     font-weight: 800;
+}
+
+.contenedor-historial {
+    display: block;
+    background-color: #EEEEEE;
+    color: #222831;
+    text-align: center;
+    width: 25%;
+    height: auto;
+    margin: 50px auto;
+    border: #222831 solid 2px;
+}
+
+.contenedor-historial h3 {
+    font-size: 20px;
+    color: #222831;
 }

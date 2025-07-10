@@ -43,7 +43,7 @@ const habilidades = {
     Ninja: [
         { nombre: "Ataque con Shuriken", poder: 15 },
         { nombre: "Corte Sigiloso", poder: 20 },
-        { nombre: "Golpe Sombrio", poder:30 }
+        { nombre: "Golpe Sombrío", poder:30 }
     ],
     Monje: [
         { nombre: "Golpe de Palma", poder: 15 },
@@ -56,17 +56,18 @@ const habilidades = {
         { nombre: "Juicio Divino", poder:30 }
     ],
     Cazador: [
-    { nombre: "Disparo Preciso", poder: 15 },
-    { nombre: "Trampa Explosiva", poder: 20 },
-    { nombre: "Flecha Letal", poder: 30 }
+        { nombre: "Disparo Preciso", poder: 15 },
+        { nombre: "Trampa Explosiva", poder: 20 },
+        { nombre: "Flecha Letal", poder: 30 }
     ],
     Bárbaro: [
-    { nombre: "Golpe Salvaje", poder: 15 },
-    { nombre: "Grito de Guerra", poder: 20 },
-    { nombre: "Tormenta de Hachas", poder: 30 }
+        { nombre: "Golpe Salvaje", poder: 15 },
+        { nombre: "Grito de Guerra", poder: 20 },
+        { nombre: "Tormenta de Hachas", poder: 30 }
     ]
 }
 
+// --- Selección de Personajes ---
 function seleccionarPersonaje(jugador) {
     const personajesCpu = personajes.filter(p => p !== jugador);
     const cpu = personajesCpu[Math.floor(Math.random() * personajesCpu.length)];
@@ -144,7 +145,39 @@ if (JugadorSigueVivo()){
 } else {
     pelea.innerHTML += `<h3>El ${cpu} gana la pelea</h3>`;
 }
+
+// --- Guardar el ganador de la pelea en el localStorage ---
+
+const resultado = {
+    jugador,
+    cpu,
+    ganador: JugadorSigueVivo() ? jugador : cpu,
+    fecha: new Date().toLocaleString()
+};
+
+let historial = JSON.parse(localStorage.getItem("historial")) || [];
+historial.push(resultado);
+localStorage.setItem("historial", JSON.stringify(historial));
+
 }
+
+// --- Mostrar el Historial ---
+
+mostrarHistorial();
+
+function mostrarHistorial() {
+const historial = JSON.parse(localStorage.getItem("historial")) || [];
+const contenedorHistorial = document.getElementById("historial");
+contenedorHistorial.innerHTML = "<h3>Historial de Peleas</h3>";
+
+historial.forEach(pelea => {
+    contenedorHistorial.innerHTML += `
+    <p>${pelea.jugador} vs ${pelea.cpu} - Ganó: <strong>${pelea.ganador}</strong> <br>
+        <small>${pelea.fecha}</small></p>
+    `;
+});
+}
+
 
 //--- Eventos para los botones ---
 
