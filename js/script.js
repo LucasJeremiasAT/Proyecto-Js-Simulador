@@ -9,37 +9,13 @@ const personajes = [
     "Brujo",
     "Ninja",
     "Monje",
-    "Sacerdote"
+    "Sacerdote",
+    "Cazador",
+    "Bárbaro"
 ];
 
-console.log("Selección de personajes:");
-
-let roster = 1;
-for(const nombre of personajes){
-    console.log(roster + ". " + nombre);
-    roster++;
-}
-
-let eleccion = parseInt(prompt("Elegí el número de tu personaje: ")) -1;
-
-const jugador = personajes[eleccion];
-
-const personajesCpu = personajes.slice();
-personajesCpu.splice(eleccion, 1);
-const cpu = personajesCpu[Math.floor(Math.random() * personajesCpu.length)];
-
-console.log(personajes);
-console.log(personajesCpu);
-console.log("Tu personaje es: " + jugador);
-console.log("CPU es: " + cpu);
-
-let vidaJugador = 100;
-let vidaCpu = 100;
-
-let round = 0;
 
 //--- Definición de habilidades para cada personaje ---
-
 const habilidades = {
     Guerrero: [
         { nombre: "Golpe Pesado", poder: 15 },
@@ -80,12 +56,36 @@ const habilidades = {
         { nombre: "Luz Castigadora", poder: 15 },
         { nombre: "Rayo Sagrado", poder: 20 },
         { nombre: "Juicio Divino", poder:30 }
+    ],
+    Cazador: [
+    { nombre: "Disparo Preciso", poder: 15 },
+    { nombre: "Trampa Explosiva", poder: 20 },
+    { nombre: "Flecha Letal", poder: 30 }
+    ],
+    Bárbaro: [
+    { nombre: "Golpe Salvaje", poder: 15 },
+    { nombre: "Grito de Guerra", poder: 20 },
+    { nombre: "Tormenta de Hachas", poder: 30 }
     ]
 }
-// --- Funciones ---
+
+function seleccionarPersonaje(jugador) {
+    const personajesCpu = personajes.filter(p => p !== jugador);
+    const cpu = personajesCpu[Math.floor(Math.random() * personajesCpu.length)];
+
+let vidaJugador = 100;
+let vidaCpu = 100;
+
+let round = 0;
+
+console.log("Tu personaje es: " + jugador);
+console.log("CPU es: " + cpu);
+
+//--- Funciones de combate ---
+
 function ataque(personaje){
     const ataques = habilidades[personaje];
-    return ataques[Math.floor(Math.random() * ataques.length)]
+    return ataques[Math.floor(Math.random() * ataques.length)];
 }
 
 function siguenPeleando() {
@@ -99,6 +99,7 @@ function JugadorSigueVivo() {
 function CalcularRound() {
     return round = round + 1;
 }
+
 // --- Estructura del combate ---
 while(siguenPeleando()) {
     CalcularRound()
@@ -109,7 +110,7 @@ while(siguenPeleando()) {
     console.log(ataqueCpu);
 
     if(ataqueJugador.poder === ataqueCpu.poder) {
-        console.log("Ambos tienen la misma fuerza y no se hacen daño");
+        console.log("Empate, no se hacen daño");
     }
     else if(ataqueJugador.poder > ataqueCpu.poder) {
         console.log("El " + jugador + " tiene un ataque mas fuerte que el " + cpu);
@@ -139,3 +140,17 @@ if (JugadorSigueVivo()){
 }else {
     console.log("El " + cpu + " gana la pelea");
 }
+}
+
+//--- Eventos para los botones ---
+
+document.getElementById("btn-guerrero").addEventListener("click", () => seleccionarPersonaje("Guerrero"));
+document.getElementById("btn-mago").addEventListener("click", () => seleccionarPersonaje("Mago"));
+document.getElementById("btn-picaro").addEventListener("click", () => seleccionarPersonaje("Pícaro"));
+document.getElementById("btn-caballero").addEventListener("click", () => seleccionarPersonaje("Caballero"));
+document.getElementById("btn-brujo").addEventListener("click", () => seleccionarPersonaje("Brujo"));
+document.getElementById("btn-ninja").addEventListener("click", () => seleccionarPersonaje("Ninja"));
+document.getElementById("btn-monje").addEventListener("click", () => seleccionarPersonaje("Monje"));
+document.getElementById("btn-sacerdote").addEventListener("click", () => seleccionarPersonaje("Sacerdote"));
+document.getElementById("btn-cazador").addEventListener("click", () => seleccionarPersonaje("Cazador"));
+document.getElementById("btn-barbaro").addEventListener("click", () => seleccionarPersonaje("Bárbaro"));
