@@ -43,21 +43,27 @@ function mostrarResultadoFinal(peleaContainer, ganador, jugador, cpu) {
 
 // --- Función que muestra el resumen de cada round en pantalla ---
 function mostrarRound(peleaContainer, round, jugador, ataqueJugador, cpu, ataqueCpu, vidaJugador, vidaCpu) {
-    let mensaje = `<p><strong>Round ${round}</strong></p>`;
-    mensaje += `<p>${jugador} usa <strong>${ataqueJugador.nombre}</strong> (${ataqueJugador.poder} de poder)</p>`;
-    mensaje += `<p>${cpu} usa <strong>${ataqueCpu.nombre}</strong> (${ataqueCpu.poder} de poder)</p>`;
+    let mensaje = `
+        <div class="round">
+            <p class="round-num"><strong>Round ${round}</strong></p>
+            <p class="ataque-jugador">${jugador} usa <strong>${ataqueJugador.nombre}</strong> <span class="poder">(${ataqueJugador.poder} de poder)</span></p>
+            <p class="ataque-cpu">${cpu} usa <strong>${ataqueCpu.nombre}</strong> <span class="poder">(${ataqueCpu.poder} de poder)</span></p>
+    `;
 
     if (ataqueJugador.poder === ataqueCpu.poder) {
-        mensaje += `<p>Empate, no se hacen daño.</p>`;
+        mensaje += `<p class="empate">Empate, no se hacen daño.</p>`;
     } else if (ataqueJugador.poder > ataqueCpu.poder) {
-        mensaje += `<p>${jugador} gana el intercambio de poderes y le hace ${ataqueJugador.poder} puntos de daño.</p>`;
+        mensaje += `<p class="golpe-jugador">${jugador} gana el intercambio de poderes y le hace <span class="dano">${ataqueJugador.poder}</span> puntos de daño.</p>`;
     } else {
-        mensaje += `<p>${cpu} gana el intercambio de poderes y le hace ${ataqueCpu.poder} puntos de daño.</p>`;
+        mensaje += `<p class="golpe-cpu">${cpu} gana el intercambio de poderes y le hace <span class="dano">${ataqueCpu.poder}</span> puntos de daño.</p>`;
     }
 
-    mensaje += `<p>HP ${jugador}: ${Math.max(vidaJugador, 0)}</p>`;
-    mensaje += `<p>HP ${cpu}: ${Math.max(vidaCpu, 0)}</p>`;
-    mensaje += `<hr>`;
+    mensaje +=  `
+            <p class="hp-jugador">HP ${jugador}: <span class="hp">${Math.max(vidaJugador, 0)}</span></p>
+            <p class="hp-cpu">HP ${cpu}: <span class="hp">${Math.max(vidaCpu, 0)}</span></p>
+            <hr>
+        </div>
+    `;
 
     peleaContainer.innerHTML += mensaje;
 }
