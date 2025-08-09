@@ -1,186 +1,182 @@
-//--- Selección de Personajes ---
-const personajes = [
-    "Guerrero",
-    "Mago",
-    "Pícaro",
-    "Caballero",
-    "Brujo",
-    "Ninja",
-    "Monje",
-    "Sacerdote",
-    "Cazador",
-    "Bárbaro"
-];
+// --- Variables globales ---
+let personajes = [];
+let habilidades = {};
 
+let jugadorSel; //jugador seleccionado
+let cpuSel; //cpu selecciolado
 
-//--- Definición de habilidades para cada personaje ---
-const habilidades = {
-    Guerrero: [
-        { nombre: "Golpe Pesado", poder: 15 },
-        { nombre: "Guillotina", poder: 20 },
-        { nombre: "Furia de Acero", poder: 30 }
-    ],
-    Mago: [
-        { nombre: "Bola de Fuego", poder: 15 },
-        { nombre: "Lanza de Hielo", poder: 20 },
-        { nombre: "Lluvia de Meteoritos", poder: 30 }
-    ],
-    Pícaro: [
-        { nombre: "Puñalada Rápida", poder: 15 },
-        { nombre: "Corte Preciso", poder: 20 },
-        { nombre: "Ataque Letal", poder: 30 }
-    ],
-    Caballero: [
-        { nombre: "Espadazo Recto", poder: 15 },
-        { nombre: "Golpe con Escudo", poder: 20 },
-        { nombre: "Carga Imparable", poder: 30 }
-    ],
-    Brujo: [
-        { nombre: "Misil Sombrío", poder: 15 },
-        { nombre: "Llamas Malditas", poder: 20 },
-        { nombre: "Ruptura Infernal", poder: 30 }
-    ],
-    Ninja: [
-        { nombre: "Ataque con Shuriken", poder: 15 },
-        { nombre: "Corte Sigiloso", poder: 20 },
-        { nombre: "Golpe Sombrío", poder:30 }
-    ],
-    Monje: [
-        { nombre: "Golpe de Palma", poder: 15 },
-        { nombre: "Puño Ascendente", poder: 20 },
-        { nombre: "Ira Interior", poder:30 }
-    ],
-    Sacerdote: [
-        { nombre: "Luz Castigadora", poder: 15 },
-        { nombre: "Rayo Sagrado", poder: 20 },
-        { nombre: "Juicio Divino", poder:30 }
-    ],
-    Cazador: [
-        { nombre: "Disparo Preciso", poder: 15 },
-        { nombre: "Trampa Explosiva", poder: 20 },
-        { nombre: "Flecha Letal", poder: 30 }
-    ],
-    Bárbaro: [
-        { nombre: "Golpe Salvaje", poder: 15 },
-        { nombre: "Grito de Guerra", poder: 20 },
-        { nombre: "Tormenta de Hachas", poder: 30 }
-    ]
-}
+let vidaJugador;
+let vidaCpu;
+let round;
 
-// --- Selección de Personajes ---
-function seleccionarPersonaje(jugador) {
-    const personajesCpu = personajes.filter(p => p !== jugador);
-    const cpu = personajesCpu[Math.floor(Math.random() * personajesCpu.length)];
+const pelea = document.getElementById("pelea");
 
-let vidaJugador = 100;
-let vidaCpu = 100;
+// --- Carga los datos del JSON ---
+fetch("datos.json")
+    .then(res => res.json())
+    .then(data => {
+        personajes = data.personajes;
+        habilidades = data.habilidades;
+    });
 
-let round = 0;
-
-//--- Funciones de combate ---
-
-function ataque(personaje){
+// --- Función que elige un ataque aleatorio de un personaje ---
+function ataqueAleatorio(personaje, habilidades) {
     const ataques = habilidades[personaje];
     return ataques[Math.floor(Math.random() * ataques.length)];
 }
 
-function siguenPeleando() {
+// --- Función que determina si ambos personajes siguen vivos ---
+function siguenVivos(vidaJugador, vidaCpu) {
     return vidaJugador > 0 && vidaCpu > 0;
 }
 
-function JugadorSigueVivo() {
-    return vidaJugador > vidaCpu;
+// --- Función que determina el ganador ---
+function determinarGanador(vidaJugador, vidaCpu, jugador, cpu) {
+    if (vidaJugador > vidaCpu) return jugador;
+    else return cpu;
 }
 
-function CalcularRound() {
-    return round = round + 1;
+// --- Función que actualiza el DOM con el resultado final ---
+function mostrarResultadoFinal(peleaContainer, ganador, jugador, cpu) {
+    peleaContainer.innerHTML += `<h3>${ganador} gana la pelea</h3>`;
 }
 
-// --- Estructura del combate ---
-
-let pelea = document.getElementById("pelea");
-
-pelea.innerHTML = `<h2>${jugador} vs ${cpu}</h2>`;
-
-let PeleaEnTiempoReal = "";
-
-while(siguenPeleando()) {
-    CalcularRound()
-
-    let ataqueJugador = ataque(jugador);
-    let ataqueCpu = ataque(cpu);
+// --- Función que muestra el resumen de cada round en pantalla ---
+function mostrarRound(peleaContainer, round, jugador, ataqueJugador, cpu, ataqueCpu, vidaJugador, vidaCpu) {
     let mensaje = `<p><strong>Round ${round}</strong></p>`;
+    mensaje += `<p>${jugador} usa <strong>${ataqueJugador.nombre}</strong> (${ataqueJugador.poder} de poder)</p>`;
+    mensaje += `<p>${cpu} usa <strong>${ataqueCpu.nombre}</strong> (${ataqueCpu.poder} de poder)</p>`;
 
-    // --- Muestra los ataques usados por ambos personajes ---
-
-    mensaje += `<p>El ${jugador} usa <strong>${ataqueJugador.nombre}</strong> (${ataqueJugador.poder} de poder)</p>`;
-    mensaje += `<p>El ${cpu} usa <strong>${ataqueCpu.nombre}</strong> (${ataqueCpu.poder} de poder)</p>`;
-
-    if(ataqueJugador.poder === ataqueCpu.poder) {
+    if (ataqueJugador.poder === ataqueCpu.poder) {
         mensaje += `<p>Empate, no se hacen daño.</p>`;
+    } else if (ataqueJugador.poder > ataqueCpu.poder) {
+        mensaje += `<p>${jugador} gana el intercambio de poderes y le hace ${ataqueJugador.poder} puntos de daño.</p>`;
+    } else {
+        mensaje += `<p>${cpu} gana el intercambio de poderes y le hace ${ataqueCpu.poder} puntos de daño.</p>`;
     }
-    else if(ataqueJugador.poder > ataqueCpu.poder) {
-        mensaje += `<p>El ${jugador} gana el intercambio de poderes y le hace ${ataqueJugador.poder} puntos de daño.</p>`;
-        vidaCpu = vidaCpu - ataqueJugador.poder;
-    }else{
-        mensaje += `<p>El ${cpu} gana el intercambio de poderes y le hace ${ataqueCpu.poder} puntos de daño.</p>`;
-        vidaJugador = vidaJugador - ataqueCpu.poder;
-    }
-    
-    // --- Muestra la vida de los jugadores ---
 
     mensaje += `<p>HP ${jugador}: ${Math.max(vidaJugador, 0)}</p>`;
     mensaje += `<p>HP ${cpu}: ${Math.max(vidaCpu, 0)}</p>`;
     mensaje += `<hr>`;
 
-    PeleaEnTiempoReal += mensaje;
+    peleaContainer.innerHTML += mensaje;
 }
 
-// --- Pelea completa después del bucle ---
-pelea.innerHTML += PeleaEnTiempoReal;
-
-// --- Muestra resultado final ---
-if (JugadorSigueVivo()){
-    pelea.innerHTML += `<h3>El ${jugador} gana la pelea</h3>`;
-} else {
-    pelea.innerHTML += `<h3>El ${cpu} gana la pelea</h3>`;
+// --- Función que muestra el daño de un round y actualiza la vida ---
+function simularRound(vidaJugador, vidaCpu, ataqueJugador, ataqueCpu) {
+    if (ataqueJugador.poder === ataqueCpu.poder) {
+        // Empate, no se hacen daño
+    } else if (ataqueJugador.poder > ataqueCpu.poder) {
+        vidaCpu -= ataqueJugador.poder;
+    } else {
+        vidaJugador -= ataqueCpu.poder;
+    }
+    return { vidaJugador, vidaCpu };
 }
 
-// --- Guardar el ganador de la pelea en el localStorage ---
-
-const resultado = {
-    jugador,
-    cpu,
-    ganador: JugadorSigueVivo() ? jugador : cpu,
-    fecha: new Date().toLocaleString()
-};
-
-let historial = JSON.parse(localStorage.getItem("historial")) || [];
-historial.push(resultado);
-localStorage.setItem("historial", JSON.stringify(historial));
-
+// --- Función para guardar el resultado en el historial de localStorage ---
+function guardarHistorial(jugador, cpu, ganador) {
+    const historial = JSON.parse(localStorage.getItem("historial")) || [];
+    historial.push({
+        jugador,
+        cpu,
+        ganador,
+        fecha: new Date().toLocaleString()
+    });
+    localStorage.setItem("historial", JSON.stringify(historial));
 }
 
-// --- Mostrar el Historial ---
+// --- Script para mostrar imagen del personaje del jugador seleccionado ---
+const imgRoster = document.querySelectorAll(".img-pj");
+const imgPjElegido = document.getElementById("img-pj-elegido");
 
+imgRoster.forEach(img => {
+    img.addEventListener("click", () => {
+        let rutaImgRoster = img.src;
+        let rutaImgPjElegido = rutaImgRoster.replace("-min", "-sel");
+        imgPjElegido.src = rutaImgPjElegido;
+    });
+});
+
+// --- Función para seleccionar personaje ---
+function seleccionarPersonaje(jugador) {
+    jugadorSel = jugador;
+
+    const personajesCpu = personajes.filter(p => p !== jugador);
+    cpuSel = personajesCpu[Math.floor(Math.random() * personajesCpu.length)];
+
+    // Mostrar imagen jugador a la derecha del roster
+    let rutaImgJugador = `./media/${jugadorSel.toLowerCase()}-sel.png`;
+    document.querySelector(".pj-jugador").innerHTML = `<img src="${rutaImgJugador}" alt="${jugadorSel}">`;
+
+    // Mostrar imagen cpu a la izquierda del roster
+    let rutaImgCpu = `./media/${cpuSel.toLowerCase()}-sel.png`;
+    document.querySelector(".pj-cpu").innerHTML = `<img src="${rutaImgCpu}" alt="${cpuSel}">`;
+
+    // Inicializa vida y ronda
+    vidaJugador = 100;
+    vidaCpu = 100;
+    round = 0;
+
+    // Muestra el título de la pelea
+    pelea.innerHTML = `<h2>${jugadorSel} vs ${cpuSel}</h2>`;
+}
+
+// --- Función que ejecuta cada round ---
+function ejecutarRound() {
+    if (!siguenVivos(vidaJugador, vidaCpu)) {
+        const ganador = determinarGanador(vidaJugador, vidaCpu, jugadorSel, cpuSel);
+        mostrarResultadoFinal(pelea, ganador, jugadorSel, cpuSel);
+        guardarHistorial(jugadorSel, cpuSel, ganador);
+
+        Swal.fire({
+            title: `${ganador} ha ganado el combate`,
+            text: "¡Victoria aplastante!",
+            imageUrl: `./media/${ganador.toLowerCase()}.png`,
+            imageWidth: 300,
+            imageAlt: `Imagen de ${ganador}`
+        });
+
+        return;
+    }
+
+    round++;
+
+    const ataqueJugador = ataqueAleatorio(jugadorSel, habilidades);
+    const ataqueCpu = ataqueAleatorio(cpuSel, habilidades);
+
+    ({ vidaJugador, vidaCpu } = simularRound(vidaJugador, vidaCpu, ataqueJugador, ataqueCpu));
+
+    mostrarRound(pelea, round, jugadorSel, ataqueJugador, cpuSel, ataqueCpu, vidaJugador, vidaCpu);
+
+    setTimeout(ejecutarRound, 1000);
+}
+
+// --- Evento para iniciar combate con botón ---
+document.getElementById("btn-combate").addEventListener("click", () => {
+    if (jugadorSel && cpuSel) {
+        ejecutarRound();
+    }
+});
+
+// --- Función para mostrar historial ---
+function mostrarHistorial() {
+    const historial = JSON.parse(localStorage.getItem("historial")) || [];
+    const contenedorHistorial = document.getElementById("historial");
+    contenedorHistorial.innerHTML = "<h3>Historial de Peleas</h3>";
+
+    historial.forEach(pelea => {
+        contenedorHistorial.innerHTML += `
+        <p>${pelea.jugador} vs ${pelea.cpu} - Ganó: <strong>${pelea.ganador}</strong> <br>
+        <small>${pelea.fecha}</small></p>
+        `;
+    });
+}
+
+// --- Mostrar historial al cargar la página ---
 mostrarHistorial();
 
-function mostrarHistorial() {
-const historial = JSON.parse(localStorage.getItem("historial")) || [];
-const contenedorHistorial = document.getElementById("historial");
-contenedorHistorial.innerHTML = "<h3>Historial de Peleas</h3>";
-
-historial.forEach(pelea => {
-    contenedorHistorial.innerHTML += `
-    <p>${pelea.jugador} vs ${pelea.cpu} - Ganó: <strong>${pelea.ganador}</strong> <br>
-        <small>${pelea.fecha}</small></p>
-    `;
-});
-}
-
-
-// --- Eventos para los botones ---
-
+// --- Eventos para botones de personajes ---
 document.getElementById("btn-guerrero").addEventListener("click", () => seleccionarPersonaje("Guerrero"));
 document.getElementById("btn-mago").addEventListener("click", () => seleccionarPersonaje("Mago"));
 document.getElementById("btn-picaro").addEventListener("click", () => seleccionarPersonaje("Pícaro"));
@@ -191,15 +187,19 @@ document.getElementById("btn-monje").addEventListener("click", () => seleccionar
 document.getElementById("btn-sacerdote").addEventListener("click", () => seleccionarPersonaje("Sacerdote"));
 document.getElementById("btn-cazador").addEventListener("click", () => seleccionarPersonaje("Cazador"));
 document.getElementById("btn-barbaro").addEventListener("click", () => seleccionarPersonaje("Bárbaro"));
+document.getElementById("btn-amazonas").addEventListener("click", () => seleccionarPersonaje("Amazonas"));
+document.getElementById("btn-bardo").addEventListener("click", () => seleccionarPersonaje("Bardo"));
+document.getElementById("btn-druida").addEventListener("click", () => seleccionarPersonaje("Druida"));
+document.getElementById("btn-nigromante").addEventListener("click", () => seleccionarPersonaje("Nigromante"));
+document.getElementById("btn-paladin").addEventListener("click", () => seleccionarPersonaje("Paladín"));
+document.getElementById("btn-valquiria").addEventListener("click", () => seleccionarPersonaje("Valquiria"));
 
-// --- Boton para reiniciar la pelea ---
-
+// --- Botón para reiniciar la página ---
 document.getElementById("btn-reiniciar").addEventListener("click", () => {
     location.reload();
 });
 
-// --- Boton para borrar el historial ---
-
+// --- Botón para borrar historial ---
 document.getElementById("btn-borrar").addEventListener("click", () => {
     localStorage.removeItem("historial");
     mostrarHistorial();

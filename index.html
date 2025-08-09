@@ -4,197 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador de pelea</title>
+    <!--Scripts-->
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script defer src="./js/script.js"></script>
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=MedievalSharp&display=swap" rel="stylesheet">
+    <!--CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
     <h1>One Must Fall</h1>
-    <div class="d-flex justify-content-center">
-        <div class="row row-cols-1 row-cols-md-3 g-4 w-75 p-3">
-    
-            <div class="col">
-                <div class="card">
-                    <img src="./media/guerrero.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Guerrero</h5>
-                        <p class="card-text">
-                            Ataques:
-                        </p>
-                        <ul>
-                            <li>Golpe Pesado, poder: 15</li>
-                            <li>Guillotina, poder: 20</li>
-                            <li>Furia de Acero, poder: 30</li>
-                        </ul>
-                        <button type="button" class="btn btn-primary" id="btn-guerrero">Elegir</button>                    
-                    </div>
+    <!--SELECTOR DE PERSONAJES-->
+    <h2 class="titulo-sel-pjs">Seleccionar Personaje</h2>
+    <div class="contenedor-sel-pjs"><!--contiene todo los bloques para poder centrarlos en la pantalla-->
+        <div class="sel-personajes"><!--contiene los bloques donde se muestra a los personajes seleccionados por jugador y cpu junto al bloque que muestra los personajes seleccionables-->
+            <div class="pj-jugador"><!--bloque donde se muestra el personaje seleccionado por el jugador-->
+                <img id="img-pj-elegido" src="./media/img-sel-personajes.png" alt="Personaje seleccionado">
+            </div>
+            <div class="contenedor-pjs"><!--bloque donde se muestra la roster de personajes, contiene los 16 personajes seleccionables-->
+                <div class="personaje-1">
+                    <img id="btn-amazonas" class="img-pj" src="./media/amazonas-min.png" alt="Amazonas">
+                    <p>Amazonas</p>
+                </div>
+                <div class="personaje-2">
+                    <img id="btn-barbaro" class="img-pj" src="./media/bárbaro-min.png" alt="Bárbaro">
+                    <p>Bárbaro</p>
+                </div>
+                <div class="personaje-3">
+                    <img id="btn-bardo" class="img-pj" src="./media/bardo-min.png" alt="Bardo">
+                    <p>Bardo</p>
+                </div>
+                <div class="personaje-4">
+                    <img id="btn-brujo" class="img-pj" src="./media/brujo-min.png" alt="Brujo">
+                    <p>Brujo</p>
+                </div>
+                <div class="personaje-5">
+                    <img id="btn-caballero" class="img-pj" src="./media/caballero-min.png" alt="Caballero">
+                    <p>Caballero</p>
+                </div>
+                <div class="personaje-6">
+                    <img id="btn-cazador" class="img-pj" src="./media/cazador-min.png" alt="Cazador">
+                    <p>Cazador</p>
+                </div>
+                <div class="personaje-7">
+                    <img id="btn-druida" class="img-pj" src="./media/druida-min.png" alt="Druida">
+                    <p>Druida</p>
+                </div>
+                <div class="personaje-8">
+                    <img id="btn-guerrero" class="img-pj" src="./media/guerrero-min.png" alt="Guerrero">
+                    <p>Guerrero</p>
+                </div>
+                <div class="personaje-9">
+                    <img id="btn-mago" class="img-pj" src="./media/mago-min.png" alt="Mago">
+                    <p>Mago</p>
+                </div>
+                <div class="personaje-10">
+                    <img id="btn-monje" class="img-pj" src="./media/monje-min.png" alt="Monje">
+                    <p>Monje</p>
+                </div>
+                <div class="personaje-11">
+                    <img id="btn-nigromante" class="img-pj" src="./media/nigromante-min.png" alt="Nigromante">
+                    <p>Nigromante</p>
+                </div>
+                <div class="personaje-12">
+                    <img id="btn-ninja" class="img-pj" src="./media/ninja-min.png" alt="Ninja">
+                    <p>Ninja</p>
+                </div>
+                <div class="personaje-13">
+                    <img id="btn-paladin" class="img-pj" src="./media/paladín-min.png" alt="Paladín">
+                    <p>Paladín</p>
+                </div>
+                <div class="personaje-14">
+                    <img id="btn-picaro" class="img-pj" src="./media/pícaro-min.png" alt="Pícaro">
+                    <p>Pícaro</p>
+                </div>
+                <div class="personaje-15">
+                    <img id="btn-sacerdote" class="img-pj" src="./media/sacerdote-min.png" alt="Sacerdote">
+                    <p>Sacerdote</p>
+                </div>
+                <div class="personaje-16">
+                    <img id="btn-valquiria" class="img-pj" src="./media/valquiria-min.png" alt="Valquiria">
+                    <p>Valquiria</p>
                 </div>
             </div>
-
-            <div class="col">
-                <div class="card">
-                    <img src="./media/mago.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Mago</h5>
-                        <p class="card-text">
-                            Ataques:
-                        </p>
-                        <ul>
-                            <li>Bola de Fuego, poder: 15</li>
-                            <li>Lanza de Hielo, poder: 20</li>
-                            <li>Lluvia de Meteoritos, poder: 30</li>
-                        </ul>
-                        <button type="button" class="btn btn-primary" id="btn-mago">Elegir</button> 
-                    </div>
-                </div>
+            <div class="pj-cpu"><!--bloque donde se muestra el personaje seleccionado por el cpu-->
+                <img src="./media/img-sel-personajes.png" alt="Personaje seleccionado">
             </div>
-
-            <div class="col">
-                <div class="card">
-                    <img src="./media/picaro.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Pícaro</h5>
-                        <p class="card-text">
-                            Ataques:
-                        </p>
-                        <ul>
-                            <li>Puñalada Rápida, poder: 15</li>
-                            <li>Corte Preciso, poder: 20</li>
-                            <li>Ataque Letal, poder: 30</li>
-                        </ul>
-                        <button type="button" class="btn btn-primary" id="btn-picaro">Elegir</button> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card">
-                    <img src="./media/caballero.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Caballero</h5>
-                        <p class="card-text">
-                            Ataques:
-                        </p>
-                        <ul>
-                            <li>Espadazo Recto, poder: 15</li>
-                            <li>Golpe con Escudo, poder: 20</li>
-                            <li>Carga Imparable, poder: 30</li>
-                        </ul>
-                        <button type="button" class="btn btn-primary" id="btn-caballero">Elegir</button> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card">
-                    <img src="./media/brujo.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Brujo</h5>
-                        <p class="card-text">
-                            Ataques:
-                        </p>
-                        <ul>
-                            <li>Misil Sombrío, poder: 15</li>
-                            <li>Llamas Malitas, poder: 20</li>
-                            <li>Ruptura Infernal, poder: 30</li>
-                        </ul>
-                        <button type="button" class="btn btn-primary" id="btn-brujo">Elegir</button> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card">
-                    <img src="./media/ninja.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Ninja</h5>
-                        <p class="card-text">
-                            Ataques:
-                        </p>
-                        <ul>
-                            <li>Ataque con Shuriken, poder: 15</li>
-                            <li>Corte Sigiloso, poder: 20</li>
-                            <li>Golpe Sombrío, poder: 30</li>
-                        </ul>
-                        <button type="button" class="btn btn-primary" id="btn-ninja">Elegir</button> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card">
-                    <img src="./media/monje.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Monje</h5>
-                        <p class="card-text">
-                            Ataques:
-                        </p>
-                        <ul>
-                            <li>Golpe de Palma, poder: 15</li>
-                            <li>Puño Ascendente, poder: 20</li>
-                            <li>Ira Interior, poder: 30</li>
-                        </ul>
-                        <button type="button" class="btn btn-primary" id="btn-monje">Elegir</button> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card">
-                    <img src="./media/sacerdote.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Sacerdote</h5>
-                        <p class="card-text">
-                            Ataques:
-                        </p>
-                        <ul>
-                            <li>Luz Castigadora, poder: 15</li>
-                            <li>Rayo Sagrado, poder: 20</li>
-                            <li>Juicio Divino, poder: 30</li>
-                        </ul>
-                        <button type="button" class="btn btn-primary" id="btn-sacerdote">Elegir</button> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card">
-                    <img src="./media/cazador.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Cazador</h5>
-                        <p class="card-text">
-                            Ataques:
-                        </p>
-                        <ul>
-                            <li>Disparo Preciso, poder: 15</li>
-                            <li>Trampa Explosiva, poder: 20</li>
-                            <li>Flecha Letal, poder: 30</li>
-                        </ul>
-                        <button type="button" class="btn btn-primary" id="btn-cazador">Elegir</button> 
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card">
-                    <img src="./media/barbaro.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Bárbaro</h5>
-                        <p class="card-text">
-                            Ataques:
-                        </p>
-                        <ul>
-                            <li>Golpe Salvaje, poder: 15</li>
-                            <li>Grito de Guerra, poder: 20</li>
-                            <li>Tormenta de Hachas, poder: 30</li>
-                        </ul>
-                        <button type="button" class="btn btn-primary" id="btn-barbaro">Elegir</button> 
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
+    <button id="btn-combate" class="btn-iniciar-combate">iniciar combate!</button>
     <div class="contenedor-pelea" id="pelea">
         <h1>Combate</h1>
     </div>

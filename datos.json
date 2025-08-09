@@ -1,0 +1,102 @@
+{
+    "personajes": [
+        "Amazonas",
+        "Bardo",
+        "Bárbaro",
+        "Brujo",
+        "Caballero",
+        "Cazador",
+        "Druida",
+        "Guerrero",
+        "Mago",
+        "Monje",
+        "Nigromante",
+        "Ninja",
+        "Paladín",
+        "Pícaro",
+        "Sacerdote",
+        "Valquiria"
+    ],
+    "habilidades": {
+        "Amazonas": [
+            { "nombre": "Doble Lanza", "poder": 15 },
+            { "nombre": "Danza Salvaje", "poder": 20 },
+            { "nombre": "Emboscada Feral", "poder": 30 }
+        ],
+        "Bardo": [
+            { "nombre": "Acorde Cortante", "poder": 15 },
+            { "nombre": "Canción Disonante", "poder": 20 },
+            { "nombre": "Sinfonía Final", "poder": 30 }
+        ],
+        "Bárbaro": [
+            { "nombre": "Golpe Salvaje", "poder": 15 },
+            { "nombre": "Grito de Guerra", "poder": 20 },
+            { "nombre": "Tormenta de Hachas", "poder": 30 }
+        ],
+        "Brujo": [
+            { "nombre": "Misil Sombrío", "poder": 15 },
+            { "nombre": "Llamas Malditas", "poder": 20 },
+            { "nombre": "Ruptura Infernal", "poder": 30 }
+        ],
+        "Caballero": [
+            { "nombre": "Espadazo Recto", "poder": 15 },
+            { "nombre": "Golpe con Escudo", "poder": 20 },
+            { "nombre": "Carga Imparable", "poder": 30 }
+        ],
+        "Cazador": [
+            { "nombre": "Disparo Preciso", "poder": 15 },
+            { "nombre": "Trampa Explosiva", "poder": 20 },
+            { "nombre": "Flecha Letal", "poder": 30 }
+        ],
+        "Druida": [
+            { "nombre": "Raíces Asfixiantes", "poder": 15 },
+            { "nombre": "Tormenta Natural", "poder": 20 },
+            { "nombre": "Transformación Bestial", "poder": 30 }
+        ],
+        "Guerrero": [
+            { "nombre": "Golpe Pesado", "poder": 15 },
+            { "nombre": "Guillotina", "poder": 20 },
+            { "nombre": "Furia de Acero", "poder": 30 }
+        ],
+        "Mago": [
+            { "nombre": "Bola de Fuego", "poder": 15 },
+            { "nombre": "Lanza de Hielo", "poder": 20 },
+            { "nombre": "Lluvia de Meteoritos", "poder": 30 }
+        ],
+        "Monje": [
+            { "nombre": "Golpe de Palma", "poder": 15 },
+            { "nombre": "Puño Ascendente", "poder": 20 },
+            { "nombre": "Ira Interior", "poder": 30 }
+        ],
+        "Nigromante": [
+            { "nombre": "Llamado del Más Allá", "poder": 15 },
+            { "nombre": "Toque de la Putrefacción", "poder": 20 },
+            { "nombre": "Almas Condenadas", "poder": 30 }
+        ],
+        "Ninja": [
+            { "nombre": "Ataque con Shuriken", "poder": 15 },
+            { "nombre": "Corte Sigiloso", "poder": 20 },
+            { "nombre": "Golpe Sombrío", "poder": 30 }
+        ],
+        "Paladín": [
+            { "nombre": "Martillo de Justicia", "poder": 15 },
+            { "nombre": "Escudo Sagrado", "poder": 20 },
+            { "nombre": "Luz del Valor", "poder": 30 }
+        ],
+        "Pícaro": [
+            { "nombre": "Puñalada Rápida", "poder": 15 },
+            { "nombre": "Corte Preciso", "poder": 20 },
+            { "nombre": "Ataque Letal", "poder": 30 }
+        ],
+        "Sacerdote": [
+            { "nombre": "Luz Castigadora", "poder": 15 },
+            { "nombre": "Rayo Sagrado", "poder": 20 },
+            { "nombre": "Juicio Divino", "poder": 30 }
+        ],
+        "Valquiria": [
+            { "nombre": "Lanza Celestial", "poder": 15 },
+            { "nombre": "Canto de Guerra", "poder": 20 },
+            { "nombre": "Juicio de las Valquirias", "poder": 30 }
+        ]
+    }
+}

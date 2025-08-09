@@ -1,20 +1,257 @@
+:root {
+  --gris-piedra: #6B6B6B;             /* gris medio, sobrio */
+  --marron-cuero: #8B5E3C;            /* marrón cálido, rústico */
+  --rojo-sangre: #8B1A1A;             /* rojo oscuro, intenso */
+  --oro-viejo: #CFA34D;               /* amarillo dorado envejecido */
+  --verde-bosque-oscuro: #2F4F2F;    /* verde profundo, natural */
+  --beige-pergamino: #E3DCC6;         /* beige claro, tono papel antiguo */
+  --gris-azulado-oscuro: #393E46;    /* gris oscuro con matiz azul */
+}
+
 body {
     margin: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: "Cinzel", serif;
     background-color: #393E46;
-    color: #EEEEEE;
+    color: #E3DCC6;
 }
 
 h1 {
     margin-top: 20px;
+    font-size: 100px;
     text-align: center;
     font-weight: 800;
 }
 
+
+/* ---SELECTOR DE PERSONAJES--- */
+
+.titulo-sel-pjs {
+    color: #CFA34D;
+    display: flex;
+    justify-content: center;
+}
+
+/* El selector de personajes esta compuesto por dos grids: El primero (con la clase .sel-personajes) contiene tres bloques donde uno muestra el personaje seleccionado por el jugador, otro el personaje del cpu y el del medio muestra el roster de personajes. El segundo (con la clase .contenedor-pjs) es el roster de personajes en si, donde contiene a los 16 personajes seleccionables */
+
+.contenedor-sel-pjs {
+    display: flex;
+    justify-content: center;
+}
+
+.sel-personajes {
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    border: 2px solid #000000;
+    width: fit-content;
+    grid-template-columns: 300px 600px 300px;
+    grid-template-rows: 600px;
+    grid-template-areas: 
+    "jugador personajes cpu"
+    ;
+}
+
+/* --Roster de personajes-- */
+
+.contenedor-pjs {
+    grid-area: personajes;
+    background-image: url(../media/sel-personajes-fondo.png);
+    background-size: cover;
+    background-position: center;
+    color: #EEEEEE;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #000000;
+    width: 600px;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(4, 150px);
+    grid-template-rows: repeat(4, 150px);
+    grid-template-areas: 
+    "amazonas barbaro bardo brujo"
+    "caballero cazador druida guerrero"
+    "mago monje nigromante ninja"
+    "paladin picaro sacerdote valquiria"
+    ;
+
+}
+
+.personaje-1 {
+    grid-area: amazonas;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.personaje-2 {
+    grid-area: barbaro;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.personaje-3 {
+    grid-area: bardo;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.personaje-4 {
+    grid-area: brujo;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.personaje-5 {
+    grid-area: caballero;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.personaje-6 {
+    grid-area: cazador;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.personaje-7 {
+    grid-area: druida;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.personaje-8 {
+    grid-area: guerrero;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.personaje-9 {
+    grid-area: mago;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.personaje-10 {
+    grid-area: monje;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.personaje-11 {
+    grid-area: nigromante;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.personaje-12 {
+    grid-area: ninja;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.personaje-13 {
+    grid-area: paladin;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.personaje-14 {
+    grid-area: picaro;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.personaje-15 {
+    grid-area: sacerdote;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.personaje-16 {
+    grid-area: valquiria;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-pj {
+    width: 80px;
+    border: 2px solid #000000;
+}
+
+.img-pj:hover {
+    width: 90px;
+}
+
+/* ---Boton de incio del combate--- */
+
+.btn-iniciar-combate {
+    display: block;
+    margin: 10px auto;
+    background-color: #D65A31;
+    color: #EEEEEE;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 15px 30px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 #000000;
+    transition: all 0.15s ease-out;
+    outline: none;
+}
+
+.btn-iniciar-combate:hover {
+    background-color: #D0CC31;
+    color: #222831;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #000000;
+}
+
+.btn-iniciar-combate:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 #000000;
+    transition-duration: 0.05s;
+}
+
+/* ---Contenedor de la pelea--- */
+
 .contenedor-pelea {
     display: block;
-    background-color: #EEEEEE;
+    background-color: #E3DCC6;
     color: #222831;
     text-align: center;
     width: 40%;
@@ -24,7 +261,7 @@ h1 {
 }
 
 .contenedor-pelea h1, h2, h3{
-    color: #D65A31;
+    color: #8B5E3C;
     font-weight: 800;
 }
 
