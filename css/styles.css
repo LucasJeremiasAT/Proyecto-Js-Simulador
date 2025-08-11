@@ -184,7 +184,7 @@ h1 {
 
 .btn-historial {
     display: flex;
-    margin-left: 450px;
+    margin-left: 23.5vw;
     color: #E3DCC6;
     background-color: #8B1A1A;
     border: 2px solid #000000;
@@ -222,7 +222,7 @@ h1 {
 
 .btn-iniciar-combate {
     display: block;
-    margin: 0px auto;
+    margin: auto;
     background-color: #CFA34D;
     color: #1F1F1F;
     font-size: 18px;
