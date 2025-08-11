@@ -1,14 +1,18 @@
 # Proyecto-Js-Simulador
 
-En este simulador participan personajes de juegos RPG como por ejemplo el guerrero, el mago, el pícaro.
+En este simulador participan 16 personajes seleccionables de juegos RPG con estilos variados como guerrero, mago, pícaro, caballero, brujo, ninja, monje, sacerdote, cazador, bárbaro, amazonas, bardo, druida, nigromante, paladín y valquiria.
 Las batallas se resuelven mediante ataques aleatorios divididos en rounds hasta que uno pierde toda su vida.
 
 ## Características
-- Simula combates 1 contra 1
+- Simula combates 1 contra 1 con 16 personajes seleccionables
+- La selección de personajes se realiza en un cuadro visual donde se muestran las fotos de todos los personajes disponibles, donde el jugador elige haciendo clic sobre la imagen del personaje deseado.
 - Cada personaje posee 3 habilidades
-- Tarjetas con ilustración de cada personaje y detalles de sus habilidades
 - Ataques elegidos aleatoriamente por round
-- Registro de HP por ronda
+- Registro y actualización en tiempo real del HP de ambos combatientes
+- Visualización dinámica del combate con scroll automático para ver el detalle de cada round
+- Música de combate que se reproduce mientras se lleva a cabo el mismo
 - Determinación automática del ganador
-- Cuadro de texto donde se ve a detalle los ataques de cada personaje en tiempo real
+- Alerta visual al final del combate con SweetAlert mostrando al ganador con su imagen
 - Historial de peleas donde indica los oponentes, el ganador y la fecha del combate
+- Botones para iniciar combate, reiniciar simulador y borrar historial
+- Carga asíncrona de datos de personajes y habilidades desde archivo JSON
