@@ -1,6 +1,6 @@
 // --- Variables globales ---
-const personajes = [];
-const habilidades = {};
+let personajes = [];
+let habilidades = {};
 
 let jugadorSel; //jugador seleccionado
 let cpuSel; //cpu selecciolado
